@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row mb-4">
+    <div class="col-md-8">
+        <h2>Your Accounts</h2>
+    </div>
+    <div class="col-md-4 text-end">
+        <a href="{{ url_for('create_account') }}" class="btn btn-primary">Create New Account</a>
+    </div>
+</div>
+
+<div class="row">
+    {% for account in accounts %}
+    <div class="col-md-4 mb-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">{{ account.account_type }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ account.account_number }}</h6>
+                <p class="card-text">
+                    Balance: ${{ "%.2f"|format(account.balance) }}<br>
+                    Transactions: {{ account.transaction_count }}
+                </p>
+                <a href="{{ url_for('transactions', account_id=account.account_id) }}" class="btn btn-outline-primary">View Transactions</a>
+            </div>
+        </div>
+    </div>
+    {% else %}
+    <div class="col-12">
+        <div class="alert alert-info">
+            You don't have any accounts yet. <a href="{{ url_for('create_account') }}">Create one now</a>!
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

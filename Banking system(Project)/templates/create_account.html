@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="text-center">Create New Account</h2>
+            </div>
+            <div class="card-body">
+                <form method="POST">
+                    <div class="mb-3">
+                        <label for="account_type" class="form-label">Account Type</label>
+                        <select class="form-select" id="account_type" name="account_type" required>
+                            <option value="Savings">Savings</option>
+                            <option value="Checking">Checking</option>
+                            <option value="Fixed Deposit">Fixed Deposit</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="initial_deposit" class="form-label">Initial Deposit</label>
+                        <input type="number" step="0.01" min="0" class="form-control" id="initial_deposit" name="initial_deposit" required>
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">Create Account</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
